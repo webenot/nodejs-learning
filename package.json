@@ -20,5 +20,7 @@
   "devDependencies": {
     "cross-env": "^5.2.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
