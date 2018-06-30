@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "cross-env NODE_PATH=. NODE_ENV=development node bin/index.js"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,6 @@
   "homepage": "https://github.com/webenot/nodejs-learning#readme",
   "devDependencies": {
     "cross-env": "^5.2.0"
-  }
+  },
+  "dependencies": {}
 }
