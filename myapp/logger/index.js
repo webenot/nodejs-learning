@@ -1,13 +1,13 @@
 const path = require('path');
-const process = require('process');
+//const process = require('process');
 
-let env = require('config').get('NODE_ENV')
+let env = process.env.NODE_ENV
 		, config = require('config').get('logger')
 		, winston = require('winston')
 		, morgan = require('morgan');
 
-const logger = new winston.Logger({
-	level: env == 'development' ? 'debug' : 'info'
+const logger = winston.createLogger({
+	level: env === 'development' ? 'debug' : 'info'
 	, transports: [new winston.transports.Console(config.console)]
 });
 
@@ -22,22 +22,22 @@ const loggerExt = {
 	}
 
 	, info(...args) {
-		const extInfo = env == 'development' ? this.getExtInfo() : '';
+		const extInfo = env === 'development' ? this.getExtInfo() : '';
 		logger.info.call(logger, ...args, extInfo);
 	}
 
 	, debug(...args) {
-		const extInfo = env == 'development' ? this.getExtInfo() : '';
+		const extInfo = env === 'development' ? this.getExtInfo() : '';
 		logger.debug.call(logger, ...args, extInfo);
 	}
 
 	, warn(...args) {
-		const extInfo = env == 'development' ? this.getExtInfo() : '';
+		const extInfo = env === 'development' ? this.getExtInfo() : '';
 		logger.warn.call(logger, ...args, extInfo);
 	}
 
 	, error(...args) {
-		const extInfo = env == 'development' ? this.getExtInfo() : '';
+		const extInfo = env === 'development' ? this.getExtInfo() : '';
 		logger.error.call(logger, ...args, extInfo);
 	}
 };
@@ -74,7 +74,7 @@ const handlers = {
 			return Reflect.get(target, key, context);
 		} else {
 			return function() {
-				return (env == 'development' && extLogLevels.includes(key)) ? value.call(target, ...arguments, self.getExtInfo()) : value.call(target, ...arguments);
+				return (env === 'development' && extLogLevels.includes(key)) ? value.call(target, ...arguments, self.getExtInfo()) : value.call(target, ...arguments);
 			};
 		}
 	}
@@ -95,5 +95,5 @@ if (!config.nativeConsole) {
 //Promise error
 process.on('unhandledRejection', r => console.trace(r));
 
-module.exports.express = morgan(env == 'development' ? 'dev' : 'combined');
+module.exports.express = morgan(env === 'development' ? 'dev' : 'combined');
 module.exports.logger = loggerProxy;
