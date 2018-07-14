@@ -3,14 +3,23 @@
 /**
  * Module dependencies.
  */
-let webRunner = require('./runners/web.js');
-let dbRunner = require('./runners/db.js');
+const webRunner = require('./runners/web.js');
+const dbRunner = require('./runners/db.js');
+const CardModel = require('models/card.js');
 
 Promise.resolve()
     .then(webRunner)
     .then(dbRunner)
     .then(() => {
         console.info('Application is running successfully');
+
+        const card = new CardModel({});
+        card.name = 'Test Promise';
+        card.save().then((doc) => {
+            console.info('Data saved to DB - ', doc);
+
+            // Чтение из базы нужно производить минимум после 400 мс после соранения, иначе данные могут еще не записатьс в базу
+        });
     })
     .catch(err => {
       if (err) {
