@@ -1,7 +1,7 @@
 const createError = require('http-errors');
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const logger = require('morgan');
+const logger = require('logger').express;
 const sassMiddleware = require('node-sass-middleware');
 
 const indexRouter = require('./routes/index');
@@ -17,7 +17,7 @@ const viewsDir =  config.get('views:viewsDir');
 httpServer.set('views', viewsDir);
 httpServer.set('view engine', 'pug');
 
-httpServer.use(logger('dev'));
+httpServer.use(logger);
 httpServer.use(express.json());
 httpServer.use(express.urlencoded({ extended: false }));
 httpServer.use(cookieParser());
