@@ -27,22 +27,22 @@ const loggerExt = {
     }
 
     , info(...args) {
-        const extInfo = env == 'development' ? this.getExtInfo() : '';
+        const extInfo = env === 'development' ? this.getExtInfo() : '';
         logger.info.call(logger, ...args, extInfo);
     }
 
     , debug(...args) {
-        const extInfo = env == 'development' ? this.getExtInfo() : '';
+        const extInfo = env === 'development' ? this.getExtInfo() : '';
         logger.debug.call(logger, ...args, extInfo);
     }
 
     , warn(...args) {
-        const extInfo = env == 'development' ? this.getExtInfo() : '';
+        const extInfo = env === 'development' ? this.getExtInfo() : '';
         logger.warn.call(logger, ...args, extInfo);
     }
 
     , error(...args) {
-        const extInfo = env == 'development' ? this.getExtInfo() : '';
+        const extInfo = env === 'development' ? this.getExtInfo() : '';
         logger.error.call(logger, ...args, extInfo);
     }
 };
@@ -79,7 +79,7 @@ const handlers = {
             return Reflect.get(target, key, context);
         } else {
             return function() {
-                return (env == 'development' && extLogLevels.includes(key)) ? value.call(target, ...arguments, self.getExtInfo()) : value.call(target, ...arguments);
+                return (env === 'development' && extLogLevels.includes(key)) ? value.call(target, ...arguments, self.getExtInfo()) : value.call(target, ...arguments);
             };
         }
     }
@@ -98,7 +98,7 @@ if (!config.nativeConsole) {
 }
 
 //Promise error
-process.on('unhandledRejection', r => console.trace(r));
+process.on('unhandledRejection', err => console.trace(err));
 
-module.exports.express = morgan(env == 'development' ? 'dev' : 'combined');
+module.exports.express = morgan(env === 'development' ? 'dev' : 'combined');
 module.exports.logger = loggerProxy;

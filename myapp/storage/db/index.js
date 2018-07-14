@@ -20,7 +20,7 @@ module.exports.init = () => {
 
         db.once('open', () => {
             db.on('error', err => {
-                logger.error(err);
+                console.error(err);
             });
 
             resolve();

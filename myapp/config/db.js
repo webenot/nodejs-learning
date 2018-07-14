@@ -1,11 +1,11 @@
 module.exports = {
     db: {
-        uri: 'mongodb://localhost/myapp',
+        uri: 'mongodb://localhost:27017/myapp',
         connect: {
             config: {
-                autoIndex: false
+                autoIndex: false,
             },
-            useMongoClient: true
+            useNewUrlParser: true
         }
     }
 };

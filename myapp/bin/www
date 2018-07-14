@@ -4,9 +4,11 @@
  * Module dependencies.
  */
 let webRunner = require('./runners/web.js');
+let dbRunner = require('./runners/db.js');
 
 Promise.resolve()
     .then(webRunner)
+    .then(dbRunner)
     .then(() => {
         console.info('Application is running successfully');
     })
