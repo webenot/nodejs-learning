@@ -1,8 +1,8 @@
 const httpServer = require('httpServer');
-//const debug = require('debug')('myapp:server');
+const debug = require('debug')('myapp:server');
 const http = require('http');
 const config = require('config');
-//const logger = require('logger');
+const logger = require('logger').logger;
 
 module.exports = () => new Promise((resolve, reject) => {
     /**
@@ -58,12 +58,12 @@ module.exports = () => new Promise((resolve, reject) => {
         switch (error.code) {
             case 'EACCES':
                 //console.error(bind + ' requires elevated privileges');
-                console.error(bind + ' requires elevated privileges');
+                logger.error(bind + ' requires elevated privileges');
                 reject();
                 //process.exit(1);
                 break;
             case 'EADDRINUSE':
-                console.error(bind + ' is already in use');
+                logger.error(bind + ' is already in use');
                 reject();
                 //process.exit(1);
                 break;

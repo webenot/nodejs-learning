@@ -1,18 +1,32 @@
 const path = require('path');
-const winston = require('winston')
+const winston = require('winston');
 const morgan = require('morgan');
 
 const env = process.env.NODE_ENV;
 const config = require('config').get('logger');
 
+const format = winston.format;
+
 const logger = winston.createLogger({
     level: env === 'development' ? 'debug' : 'info'
-    , transports: [new winston.transports.Console(config.console)]
+    , transports: [new winston.transports.Console(config.console)],
+    format: format.combine(
+        format.colorize(),
+        format.timestamp(),
+        format.splat(),
+        format.prettyPrint(),
+    )
 });
 
 if (env !== 'development') {
-    logger.add(new winston.transports.File({ filename: 'error.log', level: 'error', json: true }));
-    logger.add(new winston.transports.File({ filename: 'combined.log', json: true }));
+    logger.add(new winston.transports.File({ filename: 'logs/error.log', level: 'error', format: winston.format.combine(
+            format.json(),
+            format.timestamp()
+        ) }));
+    logger.add(new winston.transports.File({ filename: 'logs/combined.log', format: winston.format.combine(
+            format.json(),
+            format.timestamp()
+        ) }));
 }
 
 

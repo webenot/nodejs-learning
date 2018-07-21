@@ -5,27 +5,29 @@
  */
 const webRunner = require('./runners/web.js');
 const dbRunner = require('./runners/db.js');
-const CardModel = require('models/card.js');
+//const CardModel = require('models/card.js');
+const logger = require('logger').logger;
 
 Promise.resolve()
     .then(webRunner)
     .then(dbRunner)
     .then(() => {
-        console.info('Application is running successfully');
+        logger.info('Application is running successfully');
 
-        const card = new CardModel({});
+        // Тест подключения к базе данных
+        /*const card = new CardModel({});
         card.name = 'Test Promise';
         card.save().then((doc) => {
             console.info('Data saved to DB - ', doc);
 
             // Чтение из базы нужно производить минимум после 400 мс после соранения, иначе данные могут еще не записатьс в базу
-        });
+        });*/
     })
     .catch(err => {
       if (err) {
-          console.error(err);
+          logger.error(err);
       }
-        console.error('Application run is failed');
+        logger.error('Application run is failed');
       process.exit(1);
     });
 

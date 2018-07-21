@@ -1,12 +1,12 @@
-const logger = require('logger');
+const logger = require('logger').logger;
 const db = require('storage/db');
 
 module.exports = () => {
     return db.init().then(() => {
-        console.info('Connected to DB');
+        logger.info('Connected to DB');
 
         db.once('close', () => {
-            console.info('Close connection to DB');
+            logger.info('Close connection to DB');
         });
     });
 };

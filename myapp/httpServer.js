@@ -1,7 +1,7 @@
 const createError = require('http-errors');
 const express = require('express');
 const cookieParser = require('cookie-parser');
-const logger = require('logger/index1').express;
+const logger = require('logger').express;
 const sassMiddleware = require('node-sass-middleware');
 
 const indexRouter = require('./routes/index');
