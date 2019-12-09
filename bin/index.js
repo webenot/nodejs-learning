@@ -1,6 +1,6 @@
 const services = {
-    db: require("./services/db.js"),
-    web: require("./services/www.js"),
+  db: require("./services/db.js"),
+  web: require("./services/www.js"),
 };
 
 console.log("Hello");
@@ -8,5 +8,5 @@ console.log("Hello");
 require('index2');
 
 Promise.resolve()
-    .then(services.db.init)
-    .then(services.web.init);
+  .then(services.db.init)
+  .then(services.web.init);

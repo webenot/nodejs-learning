@@ -10,20 +10,20 @@ module.exports = db;
 module.exports.disconnect = mongoose.disconnect;
 
 module.exports.init = () => {
-    return new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
 
-        mongoose.connect(config.get('db:uri'), config.get('db:connect'));
+    mongoose.connect(config.get('db:uri'), config.get('db:connect'));
 
-        db.once('error', err => {
-            reject(err);
-        });
-
-        db.once('open', () => {
-            db.on('error', err => {
-                logger.error(err);
-            });
-
-            resolve();
-        });
+    db.once('error', err => {
+      reject(err);
     });
+
+    db.once('open', () => {
+      db.on('error', err => {
+        logger.error(err);
+      });
+
+      resolve();
+    });
+  });
 };

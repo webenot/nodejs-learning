@@ -16,12 +16,5 @@
   "bugs": {
     "url": "https://github.com/webenot/nodejs-learning/issues"
   },
-  "homepage": "https://github.com/webenot/nodejs-learning#readme",
-  "devDependencies": {
-    "cross-env": "^5.2.0"
-  },
-  "dependencies": {
-    "express": "^4.16.3",
-    "mongoose": "^5.2.3"
-  }
+  "homepage": "https://github.com/webenot/nodejs-learning#readme"
 }
