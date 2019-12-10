@@ -52,7 +52,7 @@ const httpServer = http.createServer((req, res) => {
       //headers
     );
 
-    console.log('data', buffer);
+    //console.log('data', buffer);
   });
 });
 
