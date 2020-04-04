@@ -11,8 +11,8 @@
   "author": "webenot",
   "license": "ISC",
   "devDependencies": {
-    "babel-eslint": "^10.0.3",
-    "nodemon": "^2.0.1"
+    "babel-eslint": "^10.1.0",
+    "nodemon": "^2.0.2"
   },
   "dependencies": {
     "dotenv": "^8.2.0"

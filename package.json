@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/webenot/nodejs-learning/issues"
   },
-  "homepage": "https://github.com/webenot/nodejs-learning#readme"
+  "homepage": "https://github.com/webenot/nodejs-learning#readme",
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1"
+  }
 }
